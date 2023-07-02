@@ -1,0 +1,3 @@
+Django
+Pillow==9.2.0
+pytz==2018.9
