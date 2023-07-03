@@ -1,101 +1,104 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load humanize %}
 {% block title %}{{ block.super }}| Home{% endblock title %}
 {% block content %}
-<!-- Blog Entries Column -->
-<div class="row">
-  <div class="col-md-8 my-4">
-    <!-- Blog Post -->
-    <div class="row">
-      {% if object_list %}
-      {% for obj in object_list %}
-      <div class="col-md-6">
-        <div class="card mb-4">
-          <img class="card-img-top" src="{{ obj.image.url }}" alt="Card image cap" style="height:160px">
-          <div class="card-body">
-            <h3 class="card-title">
-              <a href="{% url 'detail' obj.slug %}">{{ obj.title }}</a>
-            </h3>
-            <p class="card-text">
-              <div class="row">
-                <div class="col-md-6">
-                  <b>Price:</b> {{ obj.price|intcomma }} Tk
-                </div>
-                <div class="col-md-6">
-                  <b>Likes:</b> {{ obj.likes_count }}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <b>Taste:</b> {{ obj.taste }} out of 10
-                </div>
-                <div class="col-md-6">
-                  <b>Person:</b> {{ obj.persons }}
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  <b>Category: </b>
-                  {% for cat in obj.get_categories %}
-                  <a href="?q={{ request.GET.q }}&cat={{ cat }}">{{ cat }}</a>
-                  {% endfor %}
-                </div>
-              </div>
-            </p>
-            <a href="{% url 'detail' obj.slug %}" class="btn btn-secondary">Details</a>
-            <div class="float-right user-icons">
-              {% if obj in user_liked_posts %}
-              <form action="{% url 'home' %}" id='like_form{{ obj.id }}' method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="unlike" value="{{ obj.id }}">
-                <a href="javascript:{}" onclick="document.getElementById('like_form{{obj.id}}').submit(); return false;">
-                  <i class="fas fa-thumbs-up"></i></a>
-              </form>
-              {% else %}
-              <form action="{% url 'home' %}" id='unlike_form{{ obj.id }}' method="POST">
-                {% csrf_token %}
-                <input type="hidden" name="like" value="{{ obj.id }}">
-                <a href="javascript:{}" onclick="document.getElementById('unlike_form{{obj.id}}').submit(); return false;">
-                  <i class="far fa-thumbs-up"></i></a>
-              </form>
-              {% endif %}
-            </div>
-          </div>
-          <div class="card-footer text-muted">
-            Updated: {{obj.updated_at|naturaltime}}, By
-            <a href="?author={{ obj.user }}">{{ obj.user }}</a>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-      {% else %}
-      <P class="btn btn-warning ml-3">Sorry !! No post found...</P>
-      {% endif %}
-    </div>
+     <section class="home">
+         <div class="home-data">
+           <span>Mejores Cursos Online</span>
+           <h1 class="home-title">La Mejor Educacion Desde tu Casa</h1>
+         </div>
+     </section>
 
-    <!-- Pagination -->
-    {% if is_paginated %}
-    <ul class="pagination justify-content-center mb-4">
-      {% if page_obj.has_previous %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">&larr; Older</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-        <a class="page-link" href="">&larr; Older</a>
-      </li>
-      {% endif %}
+     <section class="about seccion">
+          <div class="container">
+               <img src="{% static 'img/about.jpg' %}" alt="">
+               <div class="about-data">
+                    <div class="about-heading">
+                         <h2 >Nosotros</h2>
+                         <span>Innovadora Manera de Aprender</span>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, culpa maiores. Accusantium, officiis culpa dolorem dolorum provident porro animi, inventore tempora dicta blanditiis fuga a velit laboriosam sit ut facilis.
+                    Explicabo rerum exercitationem reprehenderit aspernatur magni iste ea tempore obcaecati officiis tempora mollitia, consectetur pariatur consequatur quod impedit eius ratione accusantium itaque. Dicta ut facilis eum at? Dolores, reprehenderit culpa?</p>
+                    <a href="/about" class="btn"> Leer Mas </a>
+               </div>
+          </div>
+     </section>
 
-      {% if page_obj.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Newer &rarr;</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-        <a class="page-link" href="#">Newer &rarr;</a>
-      </li>
-      {% endif %}
-    </ul>
-    {% endif %}
-  </div>
-  {% endblock content %}
+     <section class="courses">
+          <div class="container">
+               <div class="courses-heading">
+                    <h2 >Nosotros</h2>
+                    <span>Innovadora Manera de Aprender</span>
+               </div>
+
+               <div class="courses-grid">
+                    <div class="course">
+                         <div class="course-img">
+                              <img src="{% static 'img/course-1.jpg' %}" alt="">
+                         </div>
+                         <div class="course-body">
+                              <span>
+                                   <i class="ri-group-fill"></i>
+                                   25 students
+                              </span>
+
+                              <div class="course-info">
+                                   <h3 class="course-title">Web Design & Development courses for beginner</h3>
+                                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima laborum ratione nihil, eveniet, alias labore magnam corporis nesciunt inventore</p>
+                              </div>
+
+                              <div class="course-footer">
+                                   <span class="course-price">$99</span>
+                                   <a href="" class="btn"> Ver </a>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="course">
+                         <div class="course-img">
+                              <img src="{% static 'img/course-2.jpg' %}" alt="">
+                         </div>
+                         <div class="course-body">
+                              <span>
+                                   <i class="ri-group-fill"></i>
+                                   25 students
+                              </span>
+
+                              <div class="course-info">
+                                   <h3 class="course-title">Web Design & Development courses for beginner</h3>
+                                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima laborum ratione nihil, eveniet, alias labore magnam corporis nesciunt inventore</p>
+                              </div>
+
+                              <div class="course-footer">
+                                   <span class="course-price">$99</span>
+                                   <a href="" class="btn"> Ver </a>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="course">
+                         <div class="course-img">
+                              <img src="{% static 'img/course-3.jpg' %}" alt="">
+                         </div>
+                         <div class="course-body">
+                              <span>
+                                   <i class="ri-group-fill"></i>
+                                   25 students
+                              </span>
+
+                              <div class="course-info">
+                                   <h3 class="course-title">Web Design & Development courses for beginner</h3>
+                                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minima laborum ratione nihil, eveniet, alias labore magnam corporis nesciunt inventore</p>
+                              </div>
+
+                              <div class="course-footer">
+                                   <span class="course-price">$99</span>
+                                   <a href="" class="btn"> Ver </a>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </section>
+{% endblock content %}

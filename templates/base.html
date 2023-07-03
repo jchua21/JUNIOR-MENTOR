@@ -18,12 +18,11 @@
     {% include 'partials/_navbar.html' %}
 
     <!-- main content -->
-    <div class="container">
+    <main class="main">
       {% block content %}{% endblock content %}
 
       <!-- widgets -->
-      {% block widgets %}{% include 'partials/_widgets.html' %}{% endblock widgets %}
-    </div>
+    </main>
 
     <!-- footer -->
     {% include 'partials/_footer.html' %}
