@@ -3,58 +3,59 @@
 {% block title %}{{ block.super }}| Dashboard{% endblock title %}
 {% block content %}
 <div class="row my-3 mb-5">
-  <div class="col-md-12 mb-5">
+    <div class="col-md-12 mb-5">
 
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      {{ message }}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    {% endfor %}
-    {% endif %}
-
-    <div class="card">
-      <h5 class="card-header text-center">My All Posts</h5>
-      <div class="card-body">
-        {% if object_list %}
-        <table class="table text-center">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">Post</th>
-              <th scope="col">Category</th>
-              <th scope="col">Price</th>
-              <th scope="col">Taste</th>
-              <th scope="col">Persons</th>
-              <th scope="col">Likes</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for obj in object_list %}
-            <tr>
-              <td><a href="{% url 'detail' obj.slug %}">{{ obj.title }}</a></td>
-              <td>{{ obj.categories }}</td>
-              <td>{{ obj.price }}</td>
-              <td>{{ obj.taste }}</td>
-              <td>{{ obj.persons }}</td>
-              <td>{{ obj.likes_count }}</td>
-              <td>
-                <a class="btn btn-warning btn-sm" href="{% url 'update' obj.slug %}" role="button">Edit</a>
-                <a class="btn btn-danger btn-sm" href="{% url 'delete' obj.slug %}" role="button">Delete</a>
-              </td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        {% else %}
-        <p>You have not any post yet !! <a href="{% url 'create' %}">Create a new one..</a></p>
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
         {% endif %}
 
-      </div>
+        <div class="card">
+            <h5 class="card-header bg-primary text-white text-center rounded-top">Mis publicaciones</h5>
+            <div class="card-body">
+                {% if object_list %}
+                <div class="table-responsive">
+                    <table class="table table-striped text-center">
+                        <thead class="thead-primary">
+                            <tr>
+                                <th scope="col">Título</th>
+                                <th scope="col">Categoría</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Sabor</th>
+                                <th scope="col">Personas</th>
+                                <th scope="col">Me gusta</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in object_list %}
+                            <tr>
+                                <td><a href="{% url 'detail' obj.slug %}" class="text-primary font-weight-bold">{{ obj.title }}</a></td>
+                                <td>{{ obj.categories }}</td>
+                                <td>${{ obj.price }}</td>
+                                <td>{{ obj.taste }}</td>
+                                <td>{{ obj.persons }}</td>
+                                <td>{{ obj.likes_count }}</td>
+                                <td>
+                                    <a class="btn btn-outline-info btn-sm rounded-pill mx-1" href="{% url 'update' obj.slug %}" role="button">Editar</a>
+                                    <a class="btn btn-outline-danger btn-sm rounded-pill mx-1" href="{% url 'delete' obj.slug %}" role="button">Eliminar</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-center">Aún no has creado ninguna publicación. <a href="{% url 'create' %}" class="btn btn-primary btn-sm">Crear una nueva publicación</a></p>
+                {% endif %}
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 {% endblock content %}

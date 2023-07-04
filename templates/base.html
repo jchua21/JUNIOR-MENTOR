@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Food Bank">
     <meta name="author" content="Mahmudul Alam">
-
     <title>{% block title %}FoodBank {% endblock title %}</title>
     <!-- css -->
     {% include 'partials/_styles.html' %}
@@ -18,11 +17,16 @@
     {% include 'partials/_navbar.html' %}
 
     <!-- main content -->
-    <main class="main">
+    <div class="container">
+      <!-- widgets -->
+      <div class="text-right">
+        <!-- Contenido del div -->
+        {% block widgets %}{% include 'partials/_widgets.html' %}{% endblock widgets %}
+      </div>
+      
       {% block content %}{% endblock content %}
 
-      <!-- widgets -->
-    </main>
+    </div>
 
     <!-- footer -->
     {% include 'partials/_footer.html' %}
