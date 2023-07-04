@@ -103,3 +103,12 @@ class MyPostView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Curso.objects.filter(user=self.request.user)
+
+
+def about(request):
+    
+    return render(request, "about.html")
+
+def courses(request):
+    
+    return render(request, "courses.html")

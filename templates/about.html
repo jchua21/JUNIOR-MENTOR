@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block title %}{{ block.super }}| About{% endblock title %}
+{% block content %}
+
+     <section class="about seccion">
+          <div class="container">
+               <img src="{% static 'img/about.jpg' %}" alt="">
+               <div class="about-data">
+                    <div class="about-heading">
+                         <h2 >Nosotros</h2>
+                         <span>Innovadora Manera de Aprender</span>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, culpa maiores. Accusantium, officiis culpa dolorem dolorum provident porro animi, inventore tempora dicta blanditiis fuga a velit laboriosam sit ut facilis.
+                    Explicabo rerum exercitationem reprehenderit aspernatur magni iste ea tempore obcaecati officiis tempora mollitia, consectetur pariatur consequatur quod impedit eius ratione accusantium itaque. Dicta ut facilis eum at? Dolores, reprehenderit culpa?</p>
+                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, culpa maiores. Accusantium, officiis culpa dolorem dolorum provident porro animi, inventore tempora dicta blanditiis fuga a velit laboriosam sit ut facilis.
+                    Explicabo rerum exercitationem reprehenderit aspernatur magni iste ea tempore obcaecati officiis tempora mollitia, consectetur pariatur consequatur quod impedit eius ratione accusantium itaque. Dicta ut facilis eum at? Dolores, reprehenderit culpa?</p>
+                    
+          </div>
+     </section>
+
+    
+{% endblock content %}
