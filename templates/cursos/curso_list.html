@@ -1,168 +1,11 @@
 {% extends 'base.html' %}
 {% load humanize %}
 {% block title %}{{ block.super }}| Home{% endblock title %}
+{% block widgets %}{% include 'partials/_widgets.html' %}{% endblock widgets %}
 {% block content %}
-<!-- Blog Entries Column -->
-<!-- <div class="row">
-     <div class="col-md-8 my-4">
-          <!-- Blog Post 
-          <div class="courses-grid">
-          <div class="row">
-               {% if object_list %}
-               {% for obj in object_list %}
-                    <div class="card mb-4">
-                         <div class="course">
-                              <div class="course-img">
-                                   <img src="{{ obj.image.url }}" alt="">
-                              </div>
-                              <div class="course-body">
-                                   <span>
-                                        <i class="ri-group-fill"></i>
-                                        {{ obj.likes_count }} students
-                                   </span>
-
-                                   <div class="course-info">
-                                        <h3 class="course-title">{{ obj.title }}</h3>
-                                        <p>{{ obj.description }}</p>
-                                        <div class="row">
-                                             <div class="col-md-6">
-                                                  <b>Price:</b> {{ obj.price|intcomma }} Tk
-                                             </div>
-                                             <div class="col-md-6">
-                                                  <b>Likes:</b> {{ obj.likes_count }}
-                                             </div>
-                                        </div>
-                                        <div class="row">
-                                             <div class="col-md-6">
-                                                  <b>Taste:</b> {{ obj.taste }} out of 10
-                                             </div>
-                                             <div class="col-md-6">
-                                                  <b>Person:</b> {{ obj.persons }}
-                                             </div>
-                                        </div>
-                                        <div class="row">
-                                             <div class="col-md-12">
-                                                  <b>Category: </b>
-                                                  {% for cat in obj.get_categories %}
-                                                  <a href="?q={{ request.GET.q }}&cat={{ cat }}">{{ cat }}</a>
-                                                  {% endfor %}
-                                             </div>
-                                        </div>
-                                   </div>
-
-                                   <div class="course-footer">
-                                        <span class="course-price">${{ obj.price }}</span><br>
-                                        <div class="text-right">
-                                             <a href="{% url 'detail' obj.slug %}" class="btn">Ver</a>
-                                        </div>
-                                        <div class="float-right user-icons">
-                                             {% if obj in user_liked_posts %}
-                                             <form action="{% url 'home' %}" id='like_form{{ obj.id }}' method="POST">
-                                                  {% csrf_token %}
-                                                  <input type="hidden" name="unlike" value="{{ obj.id }}">
-                                                  <a href="javascript:{}"
-                                                       onclick="document.getElementById('like_form{{obj.id}}').submit(); return false;">
-                                                       <i class="fas fa-thumbs-up"></i></a>
-                                             </form>
-                                             {% else %}
-                                             <form action="{% url 'home' %}" id='unlike_form{{ obj.id }}' method="POST">
-                                                  {% csrf_token %}
-                                                  <input type="hidden" name="like" value="{{ obj.id }}">
-                                                  <a href="javascript:{}"
-                                                       onclick="document.getElementById('unlike_form{{obj.id}}').submit(); return false;">
-                                                       <i class="far fa-thumbs-up"></i></a>
-                                             </form>
-                                             {% endif %}
-                                        </div>
-                                   </div>
-                                   <div class="card-footer text-muted">
-                                        Updated: {{ obj.updated_at|naturaltime }}, By
-                                        <a href="?author={{ obj.user }}">{{ obj.user }}</a>
-                                   </div>
-                              </div>
-                         </div>
-                    </div>
-               </div>
-               {% endfor %}
-               {% else %}
-               <P class="btn btn-warning ml-3">Sorry !! No post found...</P>
-               {% endif %}
-          </div>
-          ########################################################################
-
-          {% if object_list %}
-          {% for obj in object_list %}
-          <div class="col-md-6">
-            <div class="card mb-4">
-              <img class="card-img-top" src="{{ obj.image.url }}" alt="Card image cap" style="height:160px">###
-              <div class="card-body">
-                <h3 class="card-title">
-                  <a href="{% url 'detail' obj.slug %}">{{ obj.title }}</a>####
-                </h3>
-                <p class="card-text">
-                  <div class="row">
-                    <div class="col-md-6">
-                      <b>Price:</b> {{ obj.price|intcomma }} Tk
-                    </div>
-                    <div class="col-md-6">
-                      <b>Likes:</b> {{ obj.likes_count }}
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <b>Taste:</b> {{ obj.taste }} out of 10
-                    </div>
-                    <div class="col-md-6">
-                      <b>Person:</b> {{ obj.persons }}
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <b>Category: </b>
-                      {% for cat in obj.get_categories %}
-                      <a href="?q={{ request.GET.q }}&cat={{ cat }}">{{ cat }}</a>
-                      {% endfor %}
-                    </div>
-                  </div>
-                </p>
-                <a href="{% url 'detail' obj.slug %}" class="btn btn-secondary">Details</a>###
-                <div class="float-right user-icons">
-                  {% if obj in user_liked_posts %}
-                  <form action="{% url 'home' %}" id='like_form{{ obj.id }}' method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="unlike" value="{{ obj.id }}">
-                    <a href="javascript:{}" onclick="document.getElementById('like_form{{obj.id}}').submit(); return false;">
-                      <i class="fas fa-thumbs-up"></i></a>
-                  </form>
-                  {% else %}
-                  <form action="{% url 'home' %}" id='unlike_form{{ obj.id }}' method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="like" value="{{ obj.id }}">
-                    <a href="javascript:{}" onclick="document.getElementById('unlike_form{{obj.id}}').submit(); return false;">
-                      <i class="far fa-thumbs-up"></i></a>
-                  </form>
-                  {% endif %}
-                </div>
-              </div>
-              <div class="card-footer text-muted">
-                Updated: {{obj.updated_at|naturaltime}}, By
-                <a href="?author={{ obj.user }}">{{ obj.user }}</a>
-              </div>
-            </div>
-          </div>
-
-          {% endfor %}
-          {% else %}
-          <P class="btn btn-warning ml-3">Sorry !! No post found...</P>
-          {% endif %}-->
 
 
-
-<!--------------------------------------->
 {% if object_list %}
-
-
-
 <div class="courses-grid">
 
 
@@ -175,7 +18,7 @@
           <div class="course-body">
                <span>
                     <i class="ri-group-fill"></i>
-                    25 students
+                    {{ obj.persons }} Estudiantes
                </span>
 
                <div class="course-info">
@@ -187,31 +30,27 @@
 
 
                     <p class="card-text">
+
                     <div class="row">
                          <div class="col-md-6">
-                              <b>Price:</b> {{ obj.price|intcomma }} Tk
-                         </div>
-                         <div class="col-md-6">
-                              <b>Likes:</b> {{ obj.likes_count }}
-                         </div>
-                    </div>
-                    <div class="row">
-                         <div class="col-md-6">
-                              <b>Taste:</b> {{ obj.taste }} out of 10
-                         </div>
-                         <div class="col-md-6">
-                              <b>Person:</b> {{ obj.persons }}
+                              <b>Calificación:</b> {{ obj.taste }} de 10
                          </div>
                     </div>
                     <div class="row">
                          <div class="col-md-12">
-                              <b>Category: </b>
+                              <b>Categoría: </b>
                               {% for cat in obj.get_categories %}
                               <a href="?q={{ request.GET.q }}&cat={{ cat }}">{{ cat }}</a>
                               {% endfor %}
                          </div>
                     </div>
+                    <div class="row">
+                         <div class="col-md-6">
+                              <b>Likes:</b> {{ obj.likes_count }}
+                         </div> 
+                    </div>
                     </p>
+
                </div>
 
                <div class="course-footer">
