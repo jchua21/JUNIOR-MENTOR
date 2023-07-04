@@ -19,6 +19,29 @@
                <span>
                     <i class="ri-group-fill"></i>
                     {{ obj.persons }} Estudiantes
+                    <div style="float: left;">
+                         <p>
+                         <div class="float-right user-icons">
+                              {% if obj in user_liked_posts %}
+                              <form action="{% url 'home' %}" id='like_form{{ obj.id }}' method="POST">
+                                   {% csrf_token %}
+                                   <input type="hidden" name="unlike" value="{{ obj.id }}">
+                                   <a href="javascript:{}"
+                                        onclick="document.getElementById('like_form{{obj.id}}').submit(); return false;">
+                                        <i class="fas fa-thumbs-up"></i></a>
+                              </form>
+                              {% else %}
+                              <form action="{% url 'home' %}" id='unlike_form{{ obj.id }}' method="POST">
+                                   {% csrf_token %}
+                                   <input type="hidden" name="like" value="{{ obj.id }}">
+                                   <a href="javascript:{}"
+                                        onclick="document.getElementById('unlike_form{{obj.id}}').submit(); return false;">
+                                        <i class="far fa-thumbs-up"></i></a>
+                              </form>
+                              {% endif %}
+                         </div>
+                         </p>
+                    </div>
                </span>
 
                <div class="course-info">
@@ -47,58 +70,14 @@
                     <div class="row">
                          <div class="col-md-6">
                               <b>Likes:</b> {{ obj.likes_count }}
-                         </div> 
+                         </div>
                     </div>
                     </p>
 
                </div>
 
                <div class="course-footer">
-                    <p>
-                    <div class="float-right user-icons">
-                         {% if obj in user_liked_posts %}
-                         <form action="{% url 'home' %}" id='like_form{{ obj.id }}' method="POST">
-                              {% csrf_token %}
-                              <input type="hidden" name="unlike" value="{{ obj.id }}">
-                              <a href="javascript:{}"
-                                   onclick="document.getElementById('like_form{{obj.id}}').submit(); return false;">
-                                   <i class="fas fa-thumbs-up"></i></a>
-                         </form>
-                         {% else %}
-                         <form action="{% url 'home' %}" id='unlike_form{{ obj.id }}' method="POST">
-                              {% csrf_token %}
-                              <input type="hidden" name="like" value="{{ obj.id }}">
-                              <a href="javascript:{}"
-                                   onclick="document.getElementById('unlike_form{{obj.id}}').submit(); return false;">
-                                   <i class="far fa-thumbs-up"></i></a>
-                         </form>
-                         {% endif %}
-                    </div>
-                    <span class="course-price"></span>
-                    </p>
-
                     <span class="course-price"> S/.{{ obj.price|intcomma }} </span>
-
-                    <div class="float-right user-icons">
-                         {% if obj in user_liked_posts %}
-                         <form action="{% url 'home' %}" id='like_form{{ obj.id }}' method="POST">
-                              {% csrf_token %}
-                              <input type="hidden" name="unlike" value="{{ obj.id }}">
-                              <a href="javascript:{}"
-                                   onclick="document.getElementById('like_form{{obj.id}}').submit(); return false;">
-                                   <i class="fas fa-thumbs-up"></i></a>
-                         </form>
-                         {% else %}
-                         <form action="{% url 'home' %}" id='unlike_form{{ obj.id }}' method="POST">
-                              {% csrf_token %}
-                              <input type="hidden" name="like" value="{{ obj.id }}">
-                              <a href="javascript:{}"
-                                   onclick="document.getElementById('unlike_form{{obj.id}}').submit(); return false;">
-                                   <i class="far fa-thumbs-up"></i></a>
-                         </form>
-                         {% endif %}
-                    </div>
-
                     <a href="{% url 'detail' obj.slug %}" class="btn"> Ver </a>
                </div>
 

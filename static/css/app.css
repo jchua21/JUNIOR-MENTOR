@@ -327,3 +327,10 @@ img{
      justify-content: space-between;
 }
 
+.course-img{
+     height: 40%;
+}
+.course-img img{
+     object-fit: cover;
+     height: 100%;
+}
