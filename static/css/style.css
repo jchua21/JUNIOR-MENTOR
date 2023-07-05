@@ -24,6 +24,7 @@
   --info: #17a2b8;
   --warning: #ffc107;
   --danger: #dc3545;
+  --reddark:  #6c0909b4;
   --light: #FFFFFF;
   --dark: #44425A;
   --breakpoint-xs: 0;
@@ -1532,7 +1533,7 @@ pre code {
 .table {
   width: 100%;
   margin-bottom: 1rem;
-  color: #6C6A74;
+  
 }
 
 .table th,

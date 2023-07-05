@@ -30,11 +30,11 @@
     <table class="table table-bordered">
       <tbody>
         <tr>
-          <td>Platter</td>
+          <td>Tipo de publicación</td>
           <td>{{ object.title }}</td>
         </tr>
         <tr>
-          <td>Category:</td>
+          <td>Categoria:</td>
           <td>
             {% for cat in object.get_categories %}
             <a href="/?cat={{ cat }}">{{ cat }}</a>
@@ -42,20 +42,20 @@
           </td>
         </tr>
         <tr>
-          <td>Location</td>
+          <td>Punto de reunion</td>
           <td>{{ object.location }}</td>
         </tr>
         <tr>
-          <td>Price</td>
-          <td>{{ object.price }} Taka, Vat {{ object.vat }}%</td>
+          <td>Precio</td>
+          <td>s/{{ object.price }} </td>
         </tr>
         <tr>
-          <td>Persons</td>
+          <td>Aforo</td>
           <td>{{ object.persons }}</td>
         </tr>
         <tr>
-          <td>Taste</td>
-          <td>{{ object.taste }} out of 10</td>
+          <td>Puntuación</td>
+          <td>{{ object.taste }} de 10</td>
         </tr>
         <tr>
           <td>Likes</td>
