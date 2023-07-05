@@ -5,11 +5,11 @@
           </div>
 
           <div class="nav-lista">
-               <a class="nav-link" href="{% url 'home' %}">Home</a>
+               <a class="nav-link" href="{% url 'home' %}">Inicio</a>
                {% if request.user.is_authenticated %}
                <a class="nav-link" href="{% url 'my_posts' %}">Dashboard</a>
-               <a class="nav-link" href="{% url 'profile' request.user.id %}">Profile</a>
-               <a class="nav-link" href="{% url 'create' %}">Create Post</a>
+               <a class="nav-link" href="{% url 'profile' request.user.id %}">Perfil</a>
+               <a class="nav-link" href="{% url 'create' %}">Crear Curso</a>
                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                {% else %}
                <a class="nav-link" href="{% url 'login' %}">Login</a>

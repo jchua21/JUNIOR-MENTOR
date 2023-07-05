@@ -4,9 +4,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Food Bank">
-    <meta name="author" content="Mahmudul Alam">
-    <title>{% block title %}FoodBank {% endblock title %}</title>
+    <meta name="description" content="JuniorMentor">
+    <meta name="author" content="Franco">
+    <title>{% block title %}JuniorMentor {% endblock title %}</title>
     <!-- css -->
     {% include 'partials/_styles.html' %}
 
@@ -18,14 +18,8 @@
 
     <!-- main content -->
     <div class="container">
-      <!-- widgets -->
-      <div class="text-right">
-        <!-- Contenido del div -->
-        {% block widgets %}{% endblock widgets %}
-      </div>
-      
+      {% block widgets %}{% endblock widgets %}
       {% block content %}{% endblock content %}
-
     </div>
 
     <!-- footer -->

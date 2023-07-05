@@ -9953,3 +9953,14 @@ h6,
   padding: 0;
   list-style-type: none;
 }
+
+.orange {
+  background-color: orange;
+  color: white;
+}
+
+.gray-border {
+  border: 0.25px solid #ccc;
+}
+
+

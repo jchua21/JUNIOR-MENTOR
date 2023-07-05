@@ -16,7 +16,8 @@
     {% endif %}
     </p>
 
-    <hr> Date/Time -->
+    <hr>
+    <!-- Date/Time -->
     <p>Posted on, {{ object.created_at|naturaltime }}</p>
     <hr>
 
@@ -49,7 +50,7 @@
           <td>{{ object.price }} Taka, Vat {{ object.vat }}%</td>
         </tr>
         <tr>
-          <td>PersonsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</td>
+          <td>Persons</td>
           <td>{{ object.persons }}</td>
         </tr>
         <tr>
@@ -96,4 +97,5 @@
     {% endfor %}
     {% endif %}
   </div>
-  {% endblock content %}
+</div>
+{% endblock content %}

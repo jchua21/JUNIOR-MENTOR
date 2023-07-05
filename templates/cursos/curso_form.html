@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-{% if 'update' in request.path %}{{ block.super }}| Update post{% else %}{{ block.super }}| Create New post{% endif %}
+{% if 'update' in request.path %}{{ block.super }}| Actualizar curso{% else %}{{ block.super }}| Crear nuevo curso{% endif %}
 {% endblock title %}
 
 {% block content %}
@@ -9,16 +9,16 @@
     <div class="card">
       <h5 class="card-header text-center">
         {% if 'update' in request.path %}
-        Update Post
+        Actualizar curso
         {% else %}
-        Create Post
+        Crear Curso
         {% endif %}
       </h5>
       <div class="card-body">
         <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form.as_p }}
-          <button class="btn btn-secondary" type="submit">Submit</button>
+          <button class="btn btn-secondary" type="submit">Enviar</button>
         </form>
       </div>
     </div>
