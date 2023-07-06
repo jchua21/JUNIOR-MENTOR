@@ -7,6 +7,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Profile
 from django.contrib.messages.views import SuccessMessageMixin
+from cursos.models import Curso
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 
 class LogoutView(View):
@@ -39,3 +43,12 @@ class ImageUpdateView(LoginRequiredMixin, TemplateView):
         user.profile.image = img
         user.save()
         return redirect('profile', request.user.id)
+@login_required
+def enroll_course(request, curso_id):
+    curso = Curso.objects.get(id=curso_id)
+    profile = Profile.objects.get(user=request.user)
+
+    if curso not in profile.cursos.all():
+        profile.cursos.add(curso)
+
+    return redirect('detail', slug=curso.slug)

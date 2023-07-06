@@ -9964,4 +9964,12 @@ h6,
   border: 0.25px solid #ccc;
 }
 
+.sticky-widgets {
+  position: sticky;
+  top: 0;
+}
+.empty-courses {
+  height: 300px; /* Ajusta el tamaño deseado */
+}
+
 

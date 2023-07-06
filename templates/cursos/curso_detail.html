@@ -61,8 +61,29 @@
           <td>Likes</td>
           <td>{{ object.likes_count }}</td>
         </tr>
+        <tr>
+          <td>Alumnos Matriculados</td>
+          <td>{{ object.enrolled_students.count }}</td>
+        </tr>
       </tbody>
     </table>
+
+    <hr>
+
+    {% if user.is_authenticated %}
+    {% if user.profile in object.enrolled_students.all %}
+    <p>Ya estás matriculado en este curso.</p>
+    {% else %}
+    <!-- Botón para matricularse -->
+    <form action="{% url 'enroll' object.id %}" method="POST">
+      {% csrf_token %}
+      <button type="submit" class="btn btn-primary">Matricularse</button>
+    </form>
+    {% endif %}
+    {% else %}
+    <p>Inicia sesión para matricularte en el curso.</p>
+    <a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión</a>
+    {% endif %}
 
     <hr>
 
@@ -70,32 +91,19 @@
     <div class="card my-4">
       <h5 class="card-header">Leave a Comment:</h5>
       <div class="card-body">
-        <form action="." method="POST">
-          {% csrf_token %}
-          <div class="form-group">
-            <input type="hidden" name='slug' value="{{ object.slug }}">
-            <textarea name="comment" class="form-control" rows="3" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        <!-- Formulario de comentarios -->
       </div>
     </div>
 
-    <!-- Single Comment -->
-
+    <!-- Comentarios existentes -->
     {% if object.comments.all %}
     {% for comment in object.comments.all %}
     <div class="media mb-4">
-      <img class="d-flex mr-3 rounded-circle comment_pic" src="{{ comment.user.profile.image.url }}" alt="Image">
-      <div class="media-body">
-        <h5 class="mt-0">{{ comment.user.get_full_name }}</h5>
-        <p>{{ comment.text }}<br>
-        <small><i class="far fa-clock"></i>&nbsp{{ comment.created_at }}</small>
-        </p>
-      </div>
+      <!-- Detalles de los comentarios -->
     </div>
     {% endfor %}
     {% endif %}
   </div>
 </div>
 {% endblock content %}
+

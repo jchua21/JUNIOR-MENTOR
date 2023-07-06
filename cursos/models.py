@@ -16,10 +16,18 @@ class Curso(models.Model):
     details = models.TextField()
     slug = models.SlugField(unique=True, blank=True)
     likes = models.ManyToManyField(User, related_name='post_likes', blank=True)
-    views = models.IntegerField(default=0,blank=True)
+    views = models.IntegerField(default=0, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
+
+    students = models.ManyToManyField(User, related_name='enrolled_courses', blank=True)
+
+    def enroll_user(self, user):
+        self.students.add(user)
+
+    def unenroll_user(self, user):
+        self.students.remove(user)
 
     def __str__(self):
         return self.title
@@ -39,10 +47,9 @@ class Curso(models.Model):
             self.slug = generate_unique_slug(Curso, self.title)
         super().save(*args, **kwargs)
 
-    def delete(self,*args, **kwargs):
+    def delete(self, *args, **kwargs):
         self.image.delete()
         super().delete(*args, **kwargs)
-
 
 
 class Comment(models.Model):

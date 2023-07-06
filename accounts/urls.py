@@ -2,6 +2,7 @@ from django.urls import path
 from django.contrib.auth.views import LoginView, PasswordResetView, PasswordResetDoneView,\
     PasswordResetConfirmView, PasswordResetCompleteView
 from .views import LogoutView, RegisterView, ProfileView, ImageUpdateView
+from accounts.views import enroll_course
 
 urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
@@ -16,4 +17,6 @@ urlpatterns = [
          name='password_reset_complete'),
     path('profile/<int:pk>/', ProfileView.as_view(), name='profile'),
     path('profile/picture/', ImageUpdateView.as_view(), name='update_image'),
+    path('enroll/<int:curso_id>/', enroll_course, name='enroll')
+
 ]

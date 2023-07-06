@@ -15,6 +15,14 @@ class CursoListView(ListView):
     queryset = Curso.objects.all()
     paginate_by = 6
     template_name = 'cursos/curso_list.html'
+    context_object_name = 'object_list'
+    ordering = 'title'
+    model = Curso
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_paginated'] = self.paginate_by and context['paginator'].num_pages > 1
+        return context
 
     def get_queryset(self):
         queryset = super().get_queryset()
