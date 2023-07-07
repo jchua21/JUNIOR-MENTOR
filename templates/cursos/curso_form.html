@@ -4,17 +4,17 @@
 {% endblock title %}
 
 {% block content %}
-<div class="row">
+<div class="row justify-content-center">
   <div class="col-md-8 my-4">
-    <div class="card">
-      <h5 class="card-header text-center">
+    <div class="card bg-dark text-white" style="background-color: #303030;">
+      <h5 class="card-header text-center bg-primary rounded-top">
         {% if 'update' in request.path %}
-        Actualizar curso
+          <span style="color: white;">Actualizar curso</span>
         {% else %}
-        Crear Curso
+          <span style="color: white;">Crear curso</span>
         {% endif %}
       </h5>
-      <div class="card-body">
+      <div class="card-body" style="background-color: #303030;">
         <form action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form.as_p }}

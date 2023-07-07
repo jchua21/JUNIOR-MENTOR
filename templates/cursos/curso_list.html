@@ -82,10 +82,6 @@
             <a href="{% url 'detail' obj.slug %}" class="btn"> Ver </a>
           </div>
 
-          <div class="card-footer text-muted">
-            Updated: {{obj.updated_at|naturaltime}}, By
-            <a href="?author={{ obj.user }}">{{ obj.user }}</a>
-          </div>
         </div>
       </div>
       {% endfor %}
@@ -106,6 +102,9 @@
 
 
     <!-- Pagination -->
+    <h1></h1>
+    <h1></h1>
+    <h1></h1>
     {% if is_paginated %}
     <p></p>
     <ul class="pagination justify-content-center mb-4">
@@ -143,3 +142,4 @@
 </div>
 </div>
 {% endblock content %}
+

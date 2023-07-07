@@ -2,10 +2,10 @@
 {% load humanize %}
 {% block title %}{{ block.super }}| {{ object.title }}{% endblock title %}
 {% block content %}
-<div class="row">
-  <div class="col-lg-8">
+<div class="card my-4 rounded" style="background-color: #303030;">
+  <div class="col-lg-8 mx-auto"> <!-- Agregado mx-auto para centrar el contenido -->
     <!-- Title -->
-    <h1 class="mt-4">{{ object.title }}</h1>
+    <h1 class="mt-4" style="color: #fff;">{{ object.title }}</h1>
     <!-- Author -->
     <p class="lead">
     by
@@ -22,7 +22,7 @@
     <hr>
 
     <!-- Preview Image -->
-    <img class="img-fluid rounded" src="{{ object.image.url }}" alt="{{ object.title }}">
+    <img class="img-fluid rounded" src="{{ object.image.url }}" alt="{{ object.title }}" style="max-width: 100%; height: auto;">
     <hr>
 
     <!-- Post Content -->
@@ -87,23 +87,39 @@
 
     <hr>
 
+
     <!-- Comments Form -->
     <div class="card my-4">
-      <h5 class="card-header">Leave a Comment:</h5>
+      <h5 class="card-header" style="color: #fff;">Leave a Comment:</h5>
       <div class="card-body">
-        <!-- Formulario de comentarios -->
+        <form action="." method="POST">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="hidden" name='slug' value="{{ object.slug }}">
+            <textarea name="comment" class="form-control" rows="3" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
       </div>
     </div>
+
 
     <!-- Comentarios existentes -->
     {% if object.comments.all %}
     {% for comment in object.comments.all %}
     <div class="media mb-4">
-      <!-- Detalles de los comentarios -->
+      <img class="d-flex mr-3 rounded-circle comment_pic" src="{{ comment.user.profile.image.url }}" alt="Image"  style="max-width: 50px; max-height: 50px; border-radius: 50%; background-color: #777;">
+      <div class="media-body">
+        <h5 class="mt-0">{{ comment.user.get_full_name }}</h5>
+        <p>{{ comment.text }}<br>
+        <small><i class="far fa-clock"></i>&nbsp{{ comment.created_at }}</small>
+        </p>
+      </div>
     </div>
     {% endfor %}
     {% endif %}
   </div>
 </div>
 {% endblock content %}
+
 
