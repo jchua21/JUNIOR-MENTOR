@@ -52,3 +52,19 @@ def enroll_course(request, curso_id):
         profile.cursos.add(curso)
 
     return redirect('detail', slug=curso.slug)
+
+@login_required
+def my_enrolled_courses(request):
+    profile = Profile.objects.get(user=request.user)
+    enrolled_courses = profile.cursos.all()
+    return render(request, 'cursos/my_enrolled_courses.html', {'enrolled_courses': enrolled_courses})
+
+@login_required
+def unenroll_course(request, curso_id):
+    curso = Curso.objects.get(id=curso_id)
+    profile = Profile.objects.get(user=request.user)
+
+    if curso in profile.cursos.all():
+        profile.cursos.remove(curso)
+
+    return redirect('my_enrolled_courses')

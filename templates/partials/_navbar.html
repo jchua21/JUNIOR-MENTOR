@@ -25,7 +25,10 @@
         </li>
         {% if request.user.is_authenticated %}
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'my_posts' %}" style="color: white; font-family: 'Roboto', sans-serif; font-size: 16px; margin-right: 15px;">Dashboard</a>
+          <a class="nav-link" href="{% url 'my_posts' %}" style="color: white; font-family: 'Roboto', sans-serif; font-size: 16px; margin-right: 15px;">Mis cursos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'my_enrolled_courses' %}" style="color: white; font-family: 'Roboto', sans-serif; font-size: 16px; margin-right: 15px;">Mis Matriculas</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'profile' request.user.id %}" style="color: white; font-family: 'Roboto', sans-serif; font-size: 16px; margin-right: 15px;">Perfil</a>

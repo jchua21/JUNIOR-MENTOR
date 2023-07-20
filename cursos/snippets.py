@@ -1,16 +1,16 @@
 from django.utils.text import slugify
 
 choices = (
-    (1, 'One'),
-    (2, 'Two'),
-    (3, 'Three'),
-    (4, 'Four'),
-    (5, 'Five'),
-    (6, 'Six'),
-    (7, 'Seven'),
-    (8, 'Eight'),
-    (9, 'Nine'),
-    (10, 'Ten'),
+    (1, 'Uno'),
+    (2, 'Dos'),
+    (3, 'Tres'),
+    (4, 'Cuatro'),
+    (5, 'Cinco'),
+    (6, 'Seis'),
+    (7, 'Siete'),
+    (8, 'Ocho'),
+    (9, 'Nueve'),
+    (10, 'Diez'),
 )
 
 def generate_unique_slug(klass, field):
