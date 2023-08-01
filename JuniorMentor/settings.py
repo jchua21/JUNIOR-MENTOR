@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.     ',
+    'django.contrib.staticfiles',
     'django.contrib.humanize',
     'cursos.apps.CursosConfig',
     'accounts.apps.AccountsConfig',
@@ -139,7 +139,7 @@ if not DEBUG:
     # Tell Django to copy statics to the `staticfiles` directory
     # in your application directory on Render.
      STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-     # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
     # Turn on WhiteNoise storage backend that takes care of compressing static files
